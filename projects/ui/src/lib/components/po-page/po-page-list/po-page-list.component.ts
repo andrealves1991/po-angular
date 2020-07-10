@@ -100,7 +100,7 @@ export class PoPageListComponent extends PoPageListBaseComponent
     if (item.url) {
       isExternalLink(item.url) ? openExternalLink(item.url) : this.router.navigate([item.url]);
     } else if (item.action) {
-      callFunction(item.action, this.parentRef);
+      item.action();
     }
   }
 
@@ -151,8 +151,8 @@ export class PoPageListComponent extends PoPageListBaseComponent
     }
   }
 
-  callActionFilter(field: string): void {
-    this.callFunction(this.filter[field], this.parentRef, this.filterInput.nativeElement.value);
+  callActionFilter(field: string) {
+    this.filter[field]();
     this.changeDetector.detectChanges();
   }
 
